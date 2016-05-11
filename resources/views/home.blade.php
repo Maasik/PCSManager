@@ -18,6 +18,7 @@
                                 <th>Issues</th>
                                 <th>description_iteme</th>
                                 <th>Status</th>
+                                 <th>Stassssssssssssssssssssssssssssssssssssssssssssssssssssstus</th>
                             </tr>
                         </thead>
                         @if(isset($orders))
