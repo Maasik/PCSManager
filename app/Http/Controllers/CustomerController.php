@@ -90,7 +90,7 @@ class CustomerController extends Controller {
     public function update(Request $request, $id) {
         
     $customer = \App\Customer::findOrFail($id);
-    $customer->id = $request->get('id');
+   
     $customer->email = $request->get('email');
     $customer->address = $request->get('address');
     $customer->phone = $request->get('phone');

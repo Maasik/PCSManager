@@ -4,8 +4,8 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
-{
+class User extends Authenticatable {
+
     /**
      * The attributes that are mass assignable.
      *
@@ -23,4 +23,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function isAdmin() {
+        return \Illuminate\Support\Facades\Auth::user()->isAdmin; // this looks for an admin column in your users table
+    }
+
 }

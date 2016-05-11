@@ -17,46 +17,47 @@ Route::get('/', function () {
 
 Route::auth();
 
-//Route::get('/register', function () {
-//    if (Auth::check() && Auth::user()->isAdmin == 1) {
-//        return view('auth.register');
-//    } else {
-//        return Redirect::to('/')->with('message', 'To added new employee first you need to autehntication');
-//    }
-//});
-
-
-//Route::filter('admin', function(){
-//
-//    if ( ! Auth::user()->isAdmin())
-//    {
-//        return Redirect::to('/')
-//         ->withError('No Admin, sorry.');
-//    }
-//    
-//
-//});
-
-Route::group(['prefix' => 'user', 'namespace' => 'user'], function() {
-
-    Route::get('login', 'AuthController@login');
-    Route::get('logout', 'AuthController@logout');
-
-    Route::group(['middleware' => 'admin'], function(){
-
-
-        // ...
-    });
+Route::get('/register', function () {
+    if (Auth::check()) {
+        return redirect('/home');
+    } 
+    return view('auth.register');
 });
 
+// section User
 Route::get('/home', 'HomeController@index');
 
-Route::resource('customer', 'CustomerController');
-Route::get('/customer/search/{search}', 'CustomerController@search');
+Route::group(['middleware' => 'auth'], function () { 
+    
+    
+});
 
-Route::resource('order', 'OrderController');
-Route::get('order/create/{customer_id}', 'OrderController@create');
-Route::get('order/search/{search}', 'OrderController@search');
+// section Admin
+Route::group(['middleware' => 'admin'], function () {
+    
+
+    Route::resource('customer', 'CustomerController');
+    Route::get('/customer/search/{search}', 'CustomerController@search');
+
+    Route::resource('order', 'OrderController');
+    Route::get('order/create/{customer_id}', 'OrderController@create');
+    Route::get('order/search/{search}', 'OrderController@search');;
+});
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Route::get('admin', ['middleware' => 'auth', 'uses' => 'AdminController@index']);
