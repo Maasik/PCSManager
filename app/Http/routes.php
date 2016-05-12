@@ -41,7 +41,7 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::resource('order', 'OrderController');
     Route::get('order/create/{customer_id}', 'OrderController@create');
-    Route::get('order/search/{search}', 'OrderController@search');;
+    Route::get('order/search/{search}/{keyword}', 'OrderController@search');;
 });
 
 

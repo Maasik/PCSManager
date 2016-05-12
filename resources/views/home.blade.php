@@ -13,10 +13,10 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>№</th>
+                                <th>PC Serial</th>
                                 <th>Your description</th>
                                 <th>Issues</th>
-                                <th>description_iteme</th>
+                                <th>Description item's</th>
                                 <th>Status</th>
                             </tr>
                         </thead>

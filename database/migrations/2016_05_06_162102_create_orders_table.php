@@ -24,7 +24,7 @@ class CreateOrdersTable extends Migration
             $table->string('description_iteme', 200); // описание на нещата
             $table->mediumText('note', 200); //
             $table->string('released_employee', 50); //
-            // Статус на поръчката
+            $table->tinyInteger('status')->default(0); //// Статус на поръчката
             $table->timestamps();
             $table->foreign('customer_id')->references('id')->on('customers');
         });

@@ -6,29 +6,30 @@
         <div class="col-md-7 col-md-offset-2">
             <div class="form-group form-inline">
 
-                <input type="text" style="width: 450px" class="form-control" name="search" id="search" 
-                       onkeydown="if (event.keyCode == 13)
+                <input type="text" style="width: 380px" class="form-control" name="search" id="search" 
+                       onkeydown="if (event.keyCode === 13)
                                    document.getElementById('btnSearch').click()" 
                        placeholder="Searching by criteria...">
-                
-                <select class="btn btn-default form-control">
-                    <option value="description">description</option>
-                    <option value="decision">decision</option>
-                    <option value="pc_serial">pc serial</option>
-                    <option value="customer_id">Customer id</option>
-                    <option value="five">date</option>
+                <select class="btn btn-default form-control" id="keyword">
+                    <option value="name">Customer name</option>
+                    <option value="pc_serial">PC serial</option>
+                    <option value="customer_description">Customer description</option>
+                    <option value="ascertained_issues">Ascertained issues</option>
+                    <option value="decision">Decision</option>
                 </select>
-
                 <button class="btn btn-default" type="submin" id='btnSearch' onclick="m()">Search</button>
 
-                 
+
                 <script>
                     function m() {
                         var src = document.getElementById("search").value;
+                        var e = document.getElementById("keyword");
+                        var keywordValue = e.options[e.selectedIndex].value;
+
                         if (src === null || src === "") {
                             alert('Input something');
                         } else {
-                            window.location.href = "/order/search/" + src;
+                            window.location.href = "/order/search/" + src + "/" + keywordValue;
                         }
 
                     }
@@ -47,6 +48,17 @@
     <div class="row" >
         <div class="col-md-12">
             <div class="list-group">
+                <div class="checkbox left">
+                    <label class="btn btn-default">
+                        <input type="checkbox" > Wait for executable
+                    </label>
+                    <label class="btn btn-default">
+                        <input type="checkbox" > In progress
+                    </label>
+                    <label class="btn btn-default">
+                        <input type="checkbox" > In progress
+                    </label>
+                </div>
                 <a href="#" class="list-group-item disabled">
                     <h3> Order's list </h3>
                 </a>

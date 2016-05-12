@@ -11,3 +11,13 @@ and open the template in the editor.
 #order-box{
     margin-top: 40px;
 }
+body {
+    /*font-family: 'Indie Flower', cursive;*/
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.6em;
+
+}
+
+.fa-btn {
+    margin-right: 6px;
+}

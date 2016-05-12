@@ -99,18 +99,53 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-md-5">
-                                <div class="form-group">
-                                    <label class="col-md-12 control-label">Date of created</label>
-                                    <div class="col-md-6">
-                                        <input type="datetime" class="form-control" value='{{ isset($order)? $order->created_at:''  }}'>
-                                    </div>
+                                <div class="form-group col-md-6">
+                                    <label class=" control-label">Date of created</label>
+                                    <input type="datetime" readonly class="form-control" value='{{ isset($order)? $order->created_at:''  }}'>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-md-12 control-label">Date last updated</label>
-                                    <div class="col-md-6">
-                                        <input type="datetime" class="form-control" name="" value="{{ isset($order)? $order->updated_at:''  }}">
-                                    </div>
+                                <div class="form-group col-md-6">
+                                    <label class=" control-label">Date last updated</label>
+                                    <input type="datetime" readonly class="form-control" name="" value="{{ isset($order)? $order->updated_at:''  }}">
+                                </div>
+                            </div>
+
+                            <div class="col-md-5">
+                                <div class="form-group col-md-6">
+                                    <label class="control-label">Order finished date</label>
+                                    <input type="datetime"  class="form-control" name="finish_order_date" id="finish_date" value="{{ isset($order)? $order->finish_order_date:''  }}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class=" control-label">Order Stauts</label>
+
+                                    <select class="btn btn-default" onchange="finish()" id="status" name="status" style="width:100%">
+                                        <option value="1"{{(isset($order) && $order->status ==1)? 'selected':''}}>Wait for executable</option>
+                                        <option value="2"{{(isset($order) && $order->status ==2)? 'selected':''}} >In process</option>
+                                        <option value="3"{{(isset($order) && $order->status ==3)? 'selected':''}}>Finished</option>
+                                    </select>
+
+                                    <script>
+                                        function finish() {
+                                            var e = document.getElementById('status');
+                                            var status = e.options[e.selectedIndex].value;
+
+                                            if (status == 3) {
+                                                var date = new Date();
+                                                var current_day = date.getDate();
+                                                var current_month = date.getMonth();
+                                                var current_year = date.getFullYear();
+                                                var h = date.getHours();
+                                                var m = date.getMinutes();
+                                                var s = date.getSeconds();
+                                                
+                                                var dateTime = current_year + "-" + current_month + "-" + current_day  + " " + h + ":" +   m + ":" + s;
+                                                document.getElementById('finish_date').value =  dateTime;
+                                            }else {
+                                                document.getElementById('finish_date').value =  '';
+                                            }
+                                        }
+                                    </script>
                                 </div>
                             </div>
                         </div>
